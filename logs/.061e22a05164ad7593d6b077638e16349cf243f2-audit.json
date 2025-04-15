@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/.061e22a05164ad7593d6b077638e16349cf243f2-audit.json",
+    "files": [
+        {
+            "date": 1744709684016,
+            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/error-2025-04-15.log",
+            "hash": "2d296054075ad021be6a93a6157828830e6abbd011ed15158868b410352d52e7"
+        }
+    ],
+    "hashType": "sha256"
+}

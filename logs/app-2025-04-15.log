@@ -1,0 +1,6 @@
+2025-04-15 16:34:44 [INFO]: DB CONFIG: {"user":"IT","password":"Veg@s123","database":"nstl_vegas","server":"192.168.100.210","options":{"encrypt":false,"trustServerCertificate":true,"instanceName":"SQL2008R2","port":1433}}
+2025-04-15 16:34:44 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:34:44 [INFO]: Proceeding with application setup
+2025-04-15 16:36:19 [INFO]: DB CONFIG: {"user":"IT","password":"Veg@s123","database":"nstl_vegas","server":"192.168.100.210","options":{"encrypt":false,"trustServerCertificate":true,"instanceName":"SQL2008R2","port":1433}}
+2025-04-15 16:36:19 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:36:19 [INFO]: Proceeding with application setup
