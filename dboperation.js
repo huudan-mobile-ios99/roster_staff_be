@@ -1,17 +1,17 @@
 // dboperation.js
 const config = require('./dbconfig');
 const sql = require('mssql');
-const logger = require('./logger'); // Import Winston logger
+const logger = require('./logger');
+
 // Test database connection
 async function testDatabaseConnection() {
     try {
         let pool = await sql.connect(config);
-        console.log('Database connection established successfully to nstl_vegas');
-        logger.info('Database connection established successfully to nstl_vegas'); // Use Winston logger
+        logger.info('Database connection established successfully to nstl_vegas');
         await pool.close();
         return true;
     } catch (error) {
-        console.error('Failed to connect to the database:', error);
+        logger.error(`Failed to connect to the database: ${error}`);
         return false;
     }
 }
@@ -19,23 +19,56 @@ async function testDatabaseConnection() {
 // Run connection test at startup
 testDatabaseConnection().then(isConnected => {
     if (isConnected) {
-        logger.info('Proceeding with application setup'); // Use Winston logger
+        logger.info('Proceeding with application setup');
     } else {
-        logger.warn('Application may not function correctly due to database connection failure'); // Use Winston logger
+        logger.warn('Application may not function correctly due to database connection failure');
     }
 });
 
-async function listStaffScheduleAll(callback) {
-    const query = `SELECT * FROM nstl_vegas.dbo.fLichlamviec('04/07/2025', '04/20/2025')`;
+// Utility function to clean a single record
+function cleanRecord(record) {
+    const cleaned = { ...record };
+
+    // Trim whitespace from string fields
+    for (let key in cleaned) {
+        if (typeof cleaned[key] === 'string') {
+            const trimmed = cleaned[key].trim();
+            // Replace empty or space-only strings with null (or "" if preferred)
+            cleaned[key] = trimmed === '' ? null : trimmed;
+        }
+    }
+
+    // Fix encoding for Name field (e.g., NGUYEÃN THÒ KIM LINH → NGUYỄN THỊ KIM LINH)
+    if (cleaned.Name) {
+        // Replace common encoding errors
+        cleaned.Name = cleaned.Name
+            .replace(/ÃN/g, 'ẼN') // Fix NGUYEÃN
+            .replace(/Ò/g, 'Ị');  // Fix THÒ
+    }
+
+    // Format Date (if needed)
+    if (cleaned.Date) {
+        cleaned.Date = new Date(cleaned.Date).toISOString(); // Ensure consistent ISO format
+    }
+
+    return cleaned;
+}
+
+async function listStaffScheduleAll(startDate, endDate, callback) {
+    const query = `SELECT * FROM nstl_vegas.dbo.fLichlamviec('${startDate}', '${endDate}')`;
     try {
         let pool = await sql.connect(config);
-        console.log('Connection established for listStaffScheduleAll');
-        logger.info('Connection established for listStaffScheduleAll'); // Use Winston logger
+        logger.info('Connection established for listStaffScheduleAll');
         let lists = await pool.request().query(query);
         await pool.close();
-        callback(null, lists.recordset);
+
+        // Clean the records
+        const cleanedRecords = lists.recordset.map(record => cleanRecord(record));
+        logger.info(`Successfully fetched and cleaned ${cleanedRecords.length} staff schedule records from ${startDate} to ${endDate}`);
+
+        callback(null, cleanedRecords);
     } catch (error) {
-        console.error(`Error in listStaffScheduleAll: ${error}`);
+        logger.error(`Error in listStaffScheduleAll: ${error}`);
         callback(error, null);
     }
 }

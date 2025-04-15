@@ -4,3 +4,53 @@
 2025-04-15 16:36:19 [INFO]: DB CONFIG: {"user":"IT","password":"Veg@s123","database":"nstl_vegas","server":"192.168.100.210","options":{"encrypt":false,"trustServerCertificate":true,"instanceName":"SQL2008R2","port":1433}}
 2025-04-15 16:36:19 [INFO]: Database connection established successfully to nstl_vegas
 2025-04-15 16:36:19 [INFO]: Proceeding with application setup
+2025-04-15 16:39:01 [INFO]: DB CONFIG: {"user":"IT","password":"Veg@s123","database":"nstl_vegas","server":"192.168.100.210","options":{"encrypt":false,"trustServerCertificate":true,"instanceName":"SQL2008R2","port":1433}}
+2025-04-15 16:39:01 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:39:01 [INFO]: Proceeding with application setup
+2025-04-15 16:39:06 [INFO]: DB CONFIG: {"user":"IT","password":"Veg@s123","database":"nstl_vegas","server":"192.168.100.210","options":{"encrypt":false,"trustServerCertificate":true,"instanceName":"SQL2008R2","port":1433}}
+2025-04-15 16:39:06 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:39:06 [INFO]: Proceeding with application setup
+2025-04-15 16:39:16 [INFO]: DB CONFIG: {"user":"IT","password":"Veg@s123","database":"nstl_vegas","server":"192.168.100.210","options":{"encrypt":false,"trustServerCertificate":true,"instanceName":"SQL2008R2","port":1433}}
+2025-04-15 16:39:16 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:39:16 [INFO]: Proceeding with application setup
+2025-04-15 16:40:41 [INFO]: DB CONFIG: {"user":"IT","password":"[REDACTED]","database":"nstl_vegas","server":"192.168.100.210","options":{"encrypt":false,"trustServerCertificate":true,"instanceName":"SQL2008R2","port":1433}}
+2025-04-15 16:40:41 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:40:41 [INFO]: Proceeding with application setup
+2025-04-15 16:40:47 [INFO]: DB CONFIG: {"user":"IT","password":"[REDACTED]","database":"nstl_vegas","server":"192.168.100.210","options":{"encrypt":false,"trustServerCertificate":true,"instanceName":"SQL2008R2","port":1433}}
+2025-04-15 16:40:48 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:40:48 [INFO]: Proceeding with application setup
+2025-04-15 16:40:57 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:40:57 [INFO]: Proceeding with application setup
+2025-04-15 16:41:00 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:41:00 [INFO]: Proceeding with application setup
+2025-04-15 16:41:30 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:41:30 [INFO]: Proceeding with application setup
+2025-04-15 16:41:39 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:41:39 [INFO]: Proceeding with application setup
+2025-04-15 16:44:38 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:44:38 [INFO]: Proceeding with application setup
+2025-04-15 16:44:40 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:44:40 [INFO]: Proceeding with application setup
+2025-04-15 16:44:41 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:44:41 [INFO]: Proceeding with application setup
+2025-04-15 16:44:44 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:44:44 [INFO]: Proceeding with application setup
+2025-04-15 16:44:51 [INFO]: Middleware activated
+2025-04-15 16:47:13 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:47:13 [INFO]: Proceeding with application setup
+2025-04-15 16:47:49 [INFO]: Middleware activated
+2025-04-15 16:47:49 [INFO]: Connection established for listStaffScheduleAll
+2025-04-15 16:47:50 [INFO]: Successfully fetched staff schedule from 04/07/2025 to 04/20/2025
+2025-04-15 16:50:52 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:50:52 [INFO]: Proceeding with application setup
+2025-04-15 16:52:22 [INFO]: Database connection established successfully to nstl_vegas
+2025-04-15 16:52:22 [INFO]: Proceeding with application setup
+2025-04-15 16:52:33 [INFO]: Middleware activated
+2025-04-15 16:52:33 [INFO]: Connection established for listStaffScheduleAll
+2025-04-15 16:52:34 [INFO]: Successfully fetched and cleaned 2896 staff schedule records from 04/07/2025 to 04/20/2025
+2025-04-15 16:52:55 [INFO]: Middleware activated
+2025-04-15 16:52:55 [INFO]: Connection established for listStaffScheduleAll
+2025-04-15 16:52:55 [INFO]: Successfully fetched and cleaned 2896 staff schedule records from 04/07/2025 to 04/20/2025
+2025-04-15 16:53:04 [INFO]: Middleware activated
+2025-04-15 16:53:04 [INFO]: Connection established for listStaffScheduleAll
+2025-04-15 16:53:05 [INFO]: Successfully fetched and cleaned 2896 staff schedule records from 04/07/2025 to 04/20/2025

@@ -31,11 +31,22 @@ app.listen(port, () => {
 });
 
 // Staff schedule endpoint
-router.route('/staff_schedule_list').get((request, response) => {
-    dboperation.listStaffScheduleAll((err, result) => {
+router.route('/staff_schedule_list').post((request, response) => {
+    const { startDate, endDate } = request.body; // Extract startDate and endDate from request body
+    // Validate input
+    if (!startDate || !endDate) {
+        logger.warn('Missing startDate or endDate in request body');
+        return response.status(400).json({ error: 'startDate and endDate are required' });
+    }
+    // Validate date format (e.g., MM/DD/YYYY)
+    const dateFormatRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/;
+    if (!dateFormatRegex.test(startDate) || !dateFormatRegex.test(endDate)) {
+        logger.warn(`Invalid date format: startDate=${startDate}, endDate=${endDate}`);
+        return response.status(400).json({ error: 'Dates must be in MM/DD/YYYY format' });
+    }
+    dboperation.listStaffScheduleAll(startDate, endDate, (err, result) => {
         if (err) {
-            console.error(`Error in listStaffScheduleAll: ${err}`);
-            logger.error(`Error in listStaffScheduleAll: ${err}`); // Use Winston logger
+            logger.error(`Error in listStaffScheduleAll: ${err}`);
             return response.status(500).json({ error: 'Failed to fetch staff schedule' });
         }
         response.json(result);
