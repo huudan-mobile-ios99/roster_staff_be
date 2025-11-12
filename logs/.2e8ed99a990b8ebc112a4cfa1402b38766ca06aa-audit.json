@@ -6,9 +6,24 @@
     "auditLog": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/.2e8ed99a990b8ebc112a4cfa1402b38766ca06aa-audit.json",
     "files": [
         {
-            "date": 1744709684014,
-            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-04-15.log",
-            "hash": "545778402a4ef3ab133ee35db440b9e30f52e9aa0c9598b54db884d80749abdb"
+            "date": 1762232206669,
+            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-04.log",
+            "hash": "c5b08ad2e995e8f7bfc7e5f0a35569e3f641425aa86dd8b7bcd01ec048f2d43f"
+        },
+        {
+            "date": 1762747390964,
+            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-10.log",
+            "hash": "ec9bf78e015a7a12dd70700b1e93a00aa60436838166272504b954db435e4386"
+        },
+        {
+            "date": 1762852718305,
+            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-11.log",
+            "hash": "814580f38c05589eeb9b2d38b4098297c608e9192fa2e2ee7a84ce318243f768"
+        },
+        {
+            "date": 1762921627243,
+            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-12.log",
+            "hash": "630264105fc4c2765a3753b8be3a29d8524ae7ab821979fb68d269174b9efa5b"
         }
     ],
     "hashType": "sha256"

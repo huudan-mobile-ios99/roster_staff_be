@@ -1,0 +1,6 @@
+2025-11-11 16:28:23 [ERROR]: ❌ Error in addAL: Violation of PRIMARY KEY constraint 'PK_phep_al'. Cannot insert duplicate key in object 'dbo.phep_al'. The duplicate key value is (0, 0753                , Nov  3 2025 12:00AM).
+2025-11-11 17:00:00 [ERROR]: ❌ Error in addShift: Cannot insert the value NULL into column 'phongban', table 'NSTL_VEGAS_CONNECT.dbo.XepCaNgay'; column does not allow nulls. INSERT fails.
+2025-11-11 17:01:45 [ERROR]: ❌ Error in addShift: Cannot insert the value NULL into column 'nhom', table 'NSTL_VEGAS_CONNECT.dbo.XepCaNgay'; column does not allow nulls. INSERT fails.
+2025-11-11 17:09:04 [ERROR]: ❌ Error in addShift: Cannot insert the value NULL into column 'nhom', table 'NSTL_VEGAS_CONNECT.dbo.XepCaNgay'; column does not allow nulls. INSERT fails.
+2025-11-11 17:09:06 [ERROR]: ❌ Error in addShift: Cannot insert the value NULL into column 'nhom', table 'NSTL_VEGAS_CONNECT.dbo.XepCaNgay'; column does not allow nulls. INSERT fails.
+2025-11-11 17:09:32 [ERROR]: ❌ Error in addShift: Cannot insert the value NULL into column 'khuvuc', table 'NSTL_VEGAS_CONNECT.dbo.XepCaNgay'; column does not allow nulls. INSERT fails.

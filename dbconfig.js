@@ -2,6 +2,8 @@
 //connect mssql studio acc: IT/Veg@s123 : SQL Authentication
 require('dotenv').config(); // Load environment variables from .env
 const logger = require('./logger'); // Import Winston logger
+const sql = require('mssql'); // 👈 ADD THIS LINE
+
 
 // Validate required environment variables
 const requiredEnvVars = [
@@ -31,6 +33,20 @@ const config = {
         port: parseInt(process.env.DB_PORT, 10) // Convert port to integer
     }
 };
+
+
+// ✅ Test connection at startup
+(async () => {
+  try {
+    const pool = await sql.connect(config);
+    logger.info(`✅ Connected to VegasDB: ${config.database}`);
+    await pool.close();
+  } catch (err) {
+    logger.error(`❌ Failed to connect to VegasDB (${config.database}): ${err.message}`);
+  }
+})();
+
+
 
 // Log the config (omit password for security)
 const configForLogging = { ...config, password: '[REDACTED]' };

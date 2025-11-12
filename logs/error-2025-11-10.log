@@ -1,0 +1,12 @@
+2025-11-10 11:25:47 [ERROR]: ❌ Failed to connect to Vegas Connect DB (nstl_vegas): sql is not defined
+2025-11-10 11:25:53 [ERROR]: ❌ Failed to connect to Vegas Connect DB (nstl_vegas): sql is not defined
+2025-11-10 11:25:55 [ERROR]: ❌ Failed to connect to Vegas  DB (nstl_vegas): sql is not defined
+2025-11-10 11:25:59 [ERROR]: ❌ Failed to connect to Vegas  DB (nstl_vegas): sql is not defined
+2025-11-10 11:26:02 [ERROR]: ❌ Failed to connect to VegasDB (nstl_vegas): sql is not defined
+2025-11-10 12:30:46 [ERROR]: ❌ Error in getStaffALPHData: Invalid object name 'NSTL_VEGAS.dbo.NhanVien'.
+2025-11-10 14:38:37 [ERROR]: ❌ Error in listStaffScheduleAll: RequestError: The conversion of a nvarchar data type to a datetime data type resulted in an out-of-range value.
+2025-11-10 14:38:37 [ERROR]: Error in listStaffScheduleAll: RequestError: The conversion of a nvarchar data type to a datetime data type resulted in an out-of-range value.
+2025-11-10 15:23:40 [ERROR]: ❌ Error in addAL: Validation failed for parameter 'ngay'. Invalid date.
+2025-11-10 16:02:43 [ERROR]: ❌ Error in addAL: Violation of PRIMARY KEY constraint 'PK_phep_al'. Cannot insert duplicate key in object 'dbo.phep_al'. The duplicate key value is (0, 0753                , Nov  1 2025 12:00AM).
+2025-11-10 16:09:48 [ERROR]: ❌ Error in addAL: Violation of PRIMARY KEY constraint 'PK_phep_al'. Cannot insert duplicate key in object 'dbo.phep_al'. The duplicate key value is (0, 0753                , Nov  1 2025 12:00AM).
+2025-11-10 16:10:00 [ERROR]: ❌ Error in addAL: Violation of PRIMARY KEY constraint 'PK_phep_al'. Cannot insert duplicate key in object 'dbo.phep_al'. The duplicate key value is (0, 0753                , Nov  1 2025 12:00AM).
