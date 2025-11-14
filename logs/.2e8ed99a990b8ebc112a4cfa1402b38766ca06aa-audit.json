@@ -24,6 +24,16 @@
             "date": 1762921627243,
             "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-12.log",
             "hash": "630264105fc4c2765a3753b8be3a29d8524ae7ab821979fb68d269174b9efa5b"
+        },
+        {
+            "date": 1763026465219,
+            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-13.log",
+            "hash": "e35a851d606f2a0892c7a6eec767d415ae32902377c268de6fdf90d0fcbe42f0"
+        },
+        {
+            "date": 1763105706042,
+            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-14.log",
+            "hash": "4be5bf8d175d4b2f3e3dfb8956810f9d0535647067f59124a9f00738baa35d47"
         }
     ],
     "hashType": "sha256"

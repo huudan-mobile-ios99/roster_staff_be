@@ -62,6 +62,7 @@ function cleanRecord(record) {
 
     return cleaned;
 }
+
 async function listStaffScheduleAll(startDate, endDate, callback) {
   try {
     let pool = await sql.connect(config);
@@ -76,11 +77,35 @@ async function listStaffScheduleAll(startDate, endDate, callback) {
 
     await pool.close();
 
+    // Clean records first (trim strings etc.)
     const cleanedRecords = result.recordset.map(cleanRecord);
 
-    logger.info(`✅ Fetched and cleaned ${cleanedRecords.length} staff schedule records`);
+    // Helper to combine date + time into ISO 8601 string
+    function combineDateAndTime(dateStr, timeStr) {
+      if (!timeStr) return null;
+      const date = new Date(dateStr);
+      const [hours, minutes] = timeStr.split(':').map(Number);
+      date.setUTCHours(hours, minutes, 0, 0);
+      return date.toISOString();
+    }
 
-    callback(null, cleanedRecords);
+    // Convert to camelCase and format times
+    const formattedRecords = cleanedRecords.map(record => ({
+      code: record.code,
+      name: record.Name,
+      englishName: record.EnglishName,
+      department: record.Department,
+      shift: record.shift,
+      startTime: combineDateAndTime(record.Date, record.starttime),
+      endTime: combineDateAndTime(record.Date, record.endtime),
+      clockStartTime: combineDateAndTime(record.Date, record.Clock_StartTime),
+      clockEndTime: combineDateAndTime(record.Date, record.Clock_EndTime),
+      date: new Date(record.Date).toISOString(),
+    }));
+
+    logger.info(`✅ Fetched, cleaned, and formatted ${formattedRecords.length} staff schedule records`);
+
+    callback(null, formattedRecords);
   } catch (error) {
     logger.error(`❌ Error in listStaffScheduleAll: ${error}`);
     callback(error, null);
