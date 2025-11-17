@@ -1,0 +1,4 @@
+2025-11-17 12:31:01 [INFO]: Server started at port 8090
+2025-11-17 12:31:01 [INFO]: ✅ Connected to VegasDB: nstl_vegas
+2025-11-17 12:31:01 [INFO]: Database connection established successfully to nstl_vegas
+2025-11-17 12:31:01 [INFO]: Proceeding with application setup

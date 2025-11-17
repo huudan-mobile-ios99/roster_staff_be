@@ -34,6 +34,11 @@
             "date": 1763105706043,
             "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/error-2025-11-14.log",
             "hash": "90dd88b8b4ff1742dc8887dc029ec35319a9581f3a5cbfdeb687f620282394cf"
+        },
+        {
+            "date": 1763357461471,
+            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/error-2025-11-17.log",
+            "hash": "556718f4f8c8889fe7e048482b0d7c3ea2c761066c758de82dc358db0692f95d"
         }
     ],
     "hashType": "sha256"
