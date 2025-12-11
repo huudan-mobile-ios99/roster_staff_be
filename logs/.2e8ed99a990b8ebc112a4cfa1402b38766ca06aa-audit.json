@@ -6,39 +6,19 @@
     "auditLog": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/.2e8ed99a990b8ebc112a4cfa1402b38766ca06aa-audit.json",
     "files": [
         {
-            "date": 1762232206669,
-            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-04.log",
-            "hash": "c5b08ad2e995e8f7bfc7e5f0a35569e3f641425aa86dd8b7bcd01ec048f2d43f"
+            "date": 1765168486955,
+            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-12-08.log",
+            "hash": "b6075497b6ca6f8f3517011f8af20bb36331ef99cd834a8a62a9c153341bb21c"
         },
         {
-            "date": 1762747390964,
-            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-10.log",
-            "hash": "ec9bf78e015a7a12dd70700b1e93a00aa60436838166272504b954db435e4386"
+            "date": 1765345311008,
+            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-12-10.log",
+            "hash": "4788b453593cd9ed834748869e2d24002cb5475fbc747e29560242e85f26d014"
         },
         {
-            "date": 1762852718305,
-            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-11.log",
-            "hash": "814580f38c05589eeb9b2d38b4098297c608e9192fa2e2ee7a84ce318243f768"
-        },
-        {
-            "date": 1762921627243,
-            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-12.log",
-            "hash": "630264105fc4c2765a3753b8be3a29d8524ae7ab821979fb68d269174b9efa5b"
-        },
-        {
-            "date": 1763026465219,
-            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-13.log",
-            "hash": "e35a851d606f2a0892c7a6eec767d415ae32902377c268de6fdf90d0fcbe42f0"
-        },
-        {
-            "date": 1763105706042,
-            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-14.log",
-            "hash": "4be5bf8d175d4b2f3e3dfb8956810f9d0535647067f59124a9f00738baa35d47"
-        },
-        {
-            "date": 1763357461470,
-            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-11-17.log",
-            "hash": "d16076d2a3d17aad97b8f299005e25326469faaeafa8d342aec85be7577b27cf"
+            "date": 1765443047427,
+            "name": "/Users/thomas.dan/Projects/Working/roster_staff_be/logs/app-2025-12-11.log",
+            "hash": "5688c116ad293589a324584944d79677cbfea56469f5a59723eff9685413af37"
         }
     ],
     "hashType": "sha256"

@@ -19,10 +19,12 @@ app.use((req, res, next) => {
 // Import Routes
 const staffRoutes = require('./routes/staffRoute');
 const shiftRoutes = require('./routes/shiftRoute');
+const machineTimeRoutes = require('./routes/machineTimeRoute');
 
 // Register routes
 app.use('/api/staff', staffRoutes);
 app.use('/api/shift', shiftRoutes);
+app.use('/api/machine_time',machineTimeRoutes);
 
 // Home route
 app.get('/api/home', (req, res) => {

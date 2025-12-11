@@ -28,8 +28,8 @@ router.post('/schedule_list_old', (req, res) => {
 });
 
 // 🗓 Staff schedule (new)
-router.post('/schedule_list', (req, res) => {
-  const { startDate, endDate } = req.body; // <-- updated field names
+router.get('/schedule_list', (req, res) => {
+  const { startDate, endDate } = req.query; // <-- updated field names
 
   if (!startDate || !endDate) {
     logger.warn('Missing startDate or endDate in request body');

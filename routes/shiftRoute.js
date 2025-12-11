@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const dboperation = require('../dboperation');
 // ✅ GET /api/staff_leave?staffCode=0165&start=2025-11-01&end=2025-11-03
+
+
 // ➕ Add Shift
 router.post('/add', async (req, res) => {
   const data = req.body;
@@ -13,12 +15,26 @@ router.post('/add', async (req, res) => {
     return res.status(400).json({
       status: false,
       message: 'staffCode, date, shiftName, department, and division are required fields',
-      data
+      data:null
+    });
+  }
+
+    // 🚫 MUST CHECK: date must be greater than today
+  const reqDate = new Date(date);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  if (reqDate <= today) {
+    return res.status(400).json({
+      status: false,
+      message: 'Shift date must be greater than today',
+      data:null
     });
   }
 
   const result = await dboperation.addShift(data);
   res.json(result);
+
 });
 
 
@@ -32,7 +48,20 @@ router.put('/edit', async (req, res) => {
     return res.status(400).json({
       status: false,
       message: 'staffCode and date are required fields',
-      data
+      data:null
+    });
+  }
+
+  // 🚫 MUST CHECK: date must be greater than today
+  const reqDate = new Date(date);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  if (reqDate <= today) {
+    return res.status(400).json({
+      status: false,
+      message: 'Shift date must be greater than today',
+      data:null
     });
   }
 

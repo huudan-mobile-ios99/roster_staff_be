@@ -1,0 +1,10 @@
+2025-12-08 11:34:47 [INFO]: Server started at port 8090
+2025-12-08 11:34:47 [INFO]: ✅ Connected to VegasDB: nstl_vegas
+2025-12-08 11:34:47 [INFO]: Database connection established successfully to nstl_vegas
+2025-12-08 11:34:47 [INFO]: Proceeding with application setup
+2025-12-08 11:34:51 [INFO]: Incoming request: POST /api/staff/info
+2025-12-08 11:41:12 [INFO]: Incoming request: GET /api/staff/al_ph?staffCode=0882&start=2025-06-01&end=2025-11-10
+2025-12-08 11:41:49 [INFO]: Incoming request: GET /api/staff/al_ph?staffCode=0882&start=2025-11-01&end=2025-12-10
+2025-12-08 11:51:38 [INFO]: Incoming request: POST /api/staff/info
+2025-12-08 11:57:52 [INFO]: Incoming request: POST /api/staff/info
+2025-12-08 11:57:58 [INFO]: Incoming request: POST /api/staff/info

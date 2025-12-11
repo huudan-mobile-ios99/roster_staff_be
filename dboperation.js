@@ -548,6 +548,202 @@ async function getShiftsByStaffCode(staffCode) {
   }
 }
 
+//Machine Time
+async function getTimeMachineRecords({ limit = 50, offset = 0 } = {}) {
+  try {
+    const pool = await sql.connect(config);
+
+    const query = `
+      SELECT
+        [readers],
+        [id_number],
+        [dates],
+        [times],
+        [in_out]
+      FROM (
+        SELECT
+          [readers],
+          [id_number],
+          [dates],
+          [times],
+          [in_out],
+          ROW_NUMBER() OVER (ORDER BY dates DESC, times DESC) AS row_num,
+          COUNT(*) OVER () AS total_rows
+        FROM [NSTL_VEGAS_CONNECT].[dbo].[ChamCong]
+      ) AS numbered
+      WHERE row_num > @offset AND row_num <= @offset + @limit
+      ORDER BY dates DESC, times DESC;
+    `;
+
+    const result = await pool.request()
+      .input('offset', sql.Int, offset)
+      .input('limit', sql.Int, limit)
+      .query(query);
+
+    const total = result.recordset.length > 0 ? result.recordset[0].total_rows : 0;
+    const records = result.recordset.map(({ row_num, total_rows, ...row }) => row);
+
+    await pool.close();
+
+    return { records, total };
+
+  } catch (err) {
+    console.error("DB Error getTimeMachineRecords:", err);
+    throw err;
+  }
+}
+
+// Helper: Normalize time string
+function normalizeTime(t) {
+  if (!t) throw new Error("Time is required");
+  t = t.trim();
+
+  // Already HH:mm:ss
+  if (/^\d{2}:\d{2}:\d{2}$/.test(t)) return t;
+
+  // HH:mm → HH:mm:00
+  if (/^\d{2}:\d{2}$/.test(t)) return t + ":00";
+
+  // Allow single digit hour: 9:05 → 09:05:00
+  if (/^\d{1}:\d{2}$/.test(t)) return "0" + t.padEnd(5, ":00");
+
+  throw new Error("Invalid time format: " + t);
+}
+
+
+function timeStringToDate(timeStr) {
+  const normalized = normalizeTime(timeStr); // "15:50" → "15:50:00"
+  const [hours, minutes, seconds] = normalized.split(':').map(Number);
+  // Use a fixed date in Vietnam time zone (e.g., 2020-01-01) to avoid DST/UTC issues
+  const dummyDate = new Date(Date.UTC(2020, 0, 1, hours, minutes, seconds || 0));
+  return dummyDate;
+}
+
+async function addTimeRecord({ id_number, date, time, in_out }) {
+  try {
+    const pool = await sql.connect(config);
+    const timeDate = timeStringToDate(time); // your existing helper
+
+    const query = `
+      INSERT INTO [NSTL_VEGAS_CONNECT].[dbo].[ChamCong]
+      ([id_number], [dates], [times], [in_out])
+      VALUES (@id_number, @dates, @times, @in_out);
+
+      SELECT
+        [readers],
+        [id_number],
+        CONVERT(varchar, [dates], 23) AS dates,
+        CONVERT(varchar, [times], 108) AS times,
+        [in_out],
+        CASE WHEN [in_out] = 1 THEN 'IN' ELSE 'OUT' END AS in_out_text
+      FROM [NSTL_VEGAS_CONNECT].[dbo].[ChamCong]
+      WHERE [readers] = SCOPE_IDENTITY();
+    `;
+
+    const result = await pool.request()
+      .input('id_number', sql.VarChar, id_number)     // ← trimmed already
+      .input('dates', sql.Date, date)
+      .input('times', sql.Time, timeDate)
+      .input('in_out', sql.Int, in_out)
+      .query(query);
+
+    const insertedRow = result.recordset?.[0] || result.recordsets?.[1]?.[0];
+
+    if (!insertedRow) {
+      throw new Error("Insert succeeded but failed to retrieve record");
+    }
+
+    return insertedRow;
+
+  } catch (err) {
+    // Detect SQL Server unique constraint violation
+    if (err.number === 2601 || err.number === 2627) {
+      throw new Error('DUPLICATE_RECORD'); // ← our custom flag
+    }
+
+    console.error("DB Error in addTimeRecord:", err);
+    throw err;
+  }
+}
+
+async function updateTimeRecordByIdAndStaff({ readers, id_number, date, time, in_out }) {
+  try {
+    const pool = await sql.connect(config);
+    const timeDate = timeStringToDate(time);
+
+    const query = `
+      UPDATE [NSTL_VEGAS_CONNECT].[dbo].[ChamCong]
+      SET
+        [dates] = @dates,
+        [times] = @times,
+        [in_out] = @in_out
+      OUTPUT
+        inserted.readers,
+        inserted.id_number,
+        CONVERT(varchar, inserted.dates, 23) AS dates,
+        CONVERT(varchar, inserted.times, 108) AS times,
+        inserted.in_out,
+        CASE WHEN inserted.in_out = 1 THEN 'IN' ELSE 'OUT' END AS in_out_text
+      WHERE [readers] = @readers
+        AND [id_number] = @id_number_clean;  -- Safe match
+    `;
+
+    const result = await pool.request()
+      .input('readers', sql.Int, readers)
+      .input('id_number_clean', sql.VarChar, id_number.trim())  // Remove extra spaces
+      .input('dates', sql.Date, date)
+      .input('times', sql.Time, timeDate)
+      .input('in_out', sql.Int, parseInt(in_out, 10))
+      .query(query);
+
+    if (result.rowsAffected[0] === 0) {
+      return null; // Not found
+    }
+
+    return result.recordset[0];
+
+  } catch (err) {
+    console.error("DB Error in updateTimeRecordByIdAndStaff:", err);
+    throw err;
+  }
+}
+
+
+
+async function deleteTimeRecord({ readers, id_number }) {
+  try {
+    const pool = await sql.connect(config);
+
+    const query = `
+      DELETE FROM [NSTL_VEGAS_CONNECT].[dbo].[ChamCong]
+      OUTPUT
+        deleted.readers,
+        deleted.id_number,
+        CONVERT(varchar, deleted.dates, 23) AS dates,
+        CONVERT(varchar, deleted.times, 108) AS times,
+        deleted.in_out,
+        CASE WHEN deleted.in_out = 1 THEN 'IN' ELSE 'OUT' END AS in_out_text
+      WHERE [readers] = @readers
+        AND [id_number] = @id_number_clean;
+    `;
+
+    const result = await pool.request()
+      .input('readers', sql.Int, readers)
+      .input('id_number_clean', sql.VarChar, id_number.trim())
+      .query(query);
+
+    if (result.rowsAffected[0] === 0) {
+      return null; // Not found
+    }
+
+    return result.recordset[0];
+
+  } catch (err) {
+    console.error("DB Error in deleteTimeRecord:", err);
+    throw err;
+  }
+}
+
 module.exports = {
     listStaffScheduleAll: listStaffScheduleAll,
     getStaffInfoByCode:getStaffInfoByCode,
@@ -560,5 +756,11 @@ module.exports = {
     //Add shift
     addShift:addShift,
     editShift:editShift,
-    getShiftsByStaffCode:getShiftsByStaffCode
+    getShiftsByStaffCode:getShiftsByStaffCode,
+    //Machine Time
+    getTimeMachineRecords:getTimeMachineRecords,
+    addTimeRecord:addTimeRecord,
+    updateTimeRecordByIdAndStaff:updateTimeRecordByIdAndStaff,
+    deleteTimeRecord:deleteTimeRecord,
 };
+
